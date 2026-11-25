@@ -132,7 +132,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--mag);outline-offset
 .gem3 svg{width:64px;height:64px;margin-bottom:18px;overflow:visible}
 .gem3 h3{font:700 clamp(26px,2.4vw,34px)/1 Fredoka,sans-serif;color:#fff;margin-bottom:10px}
 .gem3 p{font-size:17px;color:#FFD3CC}
-.sfoot{margin:48px auto 0;text-align:center;font:700 clamp(20px,2vw,26px) Fredoka,sans-serif;color:#FF8FA0}
+.sfoot{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;column-gap:.3em;margin:clamp(56px,7vw,96px) auto 0;width:fit-content;max-width:min(30ch,80vw);text-align:center;font:700 clamp(28px,3.6vw,50px)/1.12 Fredoka,sans-serif;color:#fff;position:relative}
+.sfoot span{display:inline-block}
+.sfoot em{font-style:normal;color:#FF5A6E}
+.sfoot::before,.sfoot::after{content:"";position:absolute;top:50%;width:clamp(30px,8vw,120px);height:2px;background:linear-gradient(90deg,rgba(255,143,160,0),#FF8FA0)}
+.sfoot::before{right:calc(100% + 24px)}.sfoot::after{left:calc(100% + 24px);transform:scaleX(-1)}
+@media(max-width:820px){.sfoot::before,.sfoot::after{display:none}.sfoot{flex-direction:column;margin-top:44px;font-size:clamp(22px,6.2vw,28px)}}
 @media(max-width:820px){.gems3{grid-template-columns:minmax(0,1fr)}}
 @media(prefers-reduced-motion:reduce){.gem3{opacity:1;transform:none}}
 
@@ -441,7 +446,7 @@ footer .flogo{width:120px}
       <article class="gem3"><svg viewBox="-34 -34 68 68" aria-hidden="true"><circle r="26" fill="#C8102E"/><circle r="17" fill="#E5005D"/><circle r="8" fill="#FF5A6E"/><use href="#spark" transform="translate(18 -18) scale(1.1)"/></svg>
         <h3>Antocianinas</h3><p>El pigmento que le da a la granada su rojo intenso. Además de color, es un antioxidante natural.</p></article>
     </div>
-    <p class="sfoot">El tesoro nutricional de la granada, en una botella.</p>
+    <p class="sfoot"><span>El <em>tesoro nutricional</em></span> <span>de la granada,</span> <span>en una botella.</span></p>
   </div>
 </section>
 
