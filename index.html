@@ -53,7 +53,6 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--mag);outline-offset
 
 /* HERO */
 .hero{position:relative;height:100svh;min-height:620px;overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#FFC9C1 0%,var(--pink) 55%,#F79A93 100%)}
-#amb{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .hero .kick{margin:0;font:700 clamp(15px,1.6vw,20px) "Barlow Condensed",sans-serif;color:var(--wine);animation:rise .9s .2s both}
 .hcenter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,3svh,34px);padding:92px 4vw calc(clamp(46px,7svh,70px) + 10svh);z-index:2;text-align:center}
 .hlogo{margin:0;width:min(88vw,1280px,calc((100svh - 330px)*2.3));animation:wmIn 1.1s cubic-bezier(.2,1.2,.3,1) both}
@@ -262,7 +261,6 @@ footer .flogo{width:120px}
 <main>
 <!-- HERO -->
 <header class="hero" id="inicio">
-  <canvas id="amb" aria-hidden="true"></canvas>
   <div class="hcenter">
     <h1 class="hlogo" id="hwm"><span class="sr">Tesoro nutricional. ROOTS, jugo 100 % granada, sin agregados</span><svg class="htag" viewBox="-927.6 275.4 476.8 36.6" aria-hidden="true"><use href="#logoT" fill="#E5005D"/></svg><svg viewBox="292.9 288.9 911.0 278.6" aria-hidden="true"><use href="#logoL" fill="#A92249"/><use href="#logoD" stroke="#E5005D"/></svg></h1>
     <p class="hclaim">100 % granada, sin agregados.<br>Así de simple, así de bueno.</p>
@@ -659,22 +657,8 @@ addEventListener('pointerdown',e=>{
 });
 
 /* ---------- héroe: arilos flotando + parallax ---------- */
-const amb=$('#amb'),ac=amb.getContext('2d'),hero=$('.hero');let heroVis=true,floaters=[];
+const hero=$('.hero');let heroVis=true;
 new IntersectionObserver(e=>heroVis=e[0].isIntersecting).observe(hero);
-function sizeAmb(){amb.width=hero.clientWidth*DPR;amb.height=hero.clientHeight*DPR;const n=VW<820?18:38;floaters=Array.from({length:n},()=>({x:Math.random()*hero.clientWidth,y:Math.random()*hero.clientHeight,z:.4+Math.random()*.9,ph:Math.random()*6.28,r:Math.random()*6.28,vx:0,vy:0}))}
-function drawAmb(dt){
-  const W=hero.clientWidth,H=hero.clientHeight,hr=hero.getBoundingClientRect();
-  ac.setTransform(DPR,0,0,DPR,0,0);ac.clearRect(0,0,W,H);
-  for(const f of floaters){
-    f.y-=(.25+f.z*.45)*dt/16.7;f.ph+=dt*.0012;f.r+=dt*.0006*f.z;
-    const px=ptr.x-hr.left,py=ptr.y-hr.top,dx=f.x-px,dy=f.y-py,d=Math.hypot(dx,dy);
-    if(ptr.has&&d<160){f.vx+=dx/d*(160-d)*.012;f.vy+=dy/d*(160-d)*.012}
-    f.vx*=.93;f.vy*=.93;f.x+=f.vx+Math.sin(f.ph)*.3;f.y+=f.vy;
-    if(f.y<-40){f.y=H+40;f.x=Math.random()*W}
-    const s=SPR.aril.width/2*.42*f.z;ac.globalAlpha=.35+f.z*.5;ac.save();ac.translate(f.x,f.y);ac.rotate(f.r);ac.drawImage(SPR.aril,-s/2,-s/2,s,s);ac.restore();
-  }
-  ac.globalAlpha=1;
-}
 const hwm=$('#hwm');let hmx=0,hmy=0;
 function heroParallax(){
   const tx=ptr.has?(ptr.x/VW-.5):0,ty=ptr.has?(ptr.y/VH-.5):0;hmx=lerp(hmx,tx,.06);hmy=lerp(hmy,ty,.06);
@@ -818,12 +802,12 @@ function doMeter(){const p=clamp(scrollY/(document.documentElement.scrollHeight-
   if(p>.995&&!mDone){mDone=true;const r=$('.meter').getBoundingClientRect();burst(r.left+r.width/2,r.top,30,{up:true,power:9})}if(p<.9)mDone=false}
 
 /* loop */
-function resize(){VW=innerWidth;VH=innerHeight;sizeFx();sizeAmb();sizeViaje();sizeCyl()}
+function resize(){VW=innerWidth;VH=innerHeight;sizeFx();sizeViaje();sizeCyl()}
 addEventListener('resize',resize);addEventListener('load',resize);resize();
 let last=performance.now();
 function frame(t){now=t;const dt=Math.min(50,t-last);last=t;
   for(const k in S){const s=S[k];s.p=prog(s);s.sp=RM?s.p:lerp(s.sp,s.p,Math.min(1,dt*.011))}
-  if(heroVis){if(!RM)drawAmb(dt);heroParallax()}
+  if(heroVis)heroParallax()
   {const sc=S.campo;sc.p=prog(sc);sc.sp=RM?sc.p:lerp(sc.sp,sc.p,Math.min(1,dt*.011));if(sc.vis)doCampo(sc.sp)}
   if(S.abrir.vis)doAbrir(RM?1:S.abrir.sp);
   if(S.viaje.vis||mobile())doViaje(S.viaje.sp);
