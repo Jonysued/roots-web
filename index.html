@@ -116,21 +116,6 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--mag);outline-offset
 .hint b::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;border-radius:3px;background:currentColor;transform:translateX(-50%);animation:wheel 1.4s infinite}
 @keyframes wheel{to{transform:translate(-50%,10px);opacity:0}}
 
-/* JUGO */
-#jugo{height:300svh;background:var(--cream)}
-#jugo .stick{background:var(--cream)}
-.jhead{position:absolute;top:16svh;left:0;right:0;text-align:center;padding:0 20px;z-index:0}
-.jhead h2{font-size:clamp(36px,5.4vw,78px);color:var(--wine);font-weight:700}
-.jhead p{margin-top:14px;font:600 18px Fredoka,sans-serif;color:var(--mag)}
-.liq{position:absolute;inset:0;width:100%;height:100%;display:block}
-.liq.back{z-index:1}.liq.front{z-index:3;pointer-events:none}
-.floaters .char{z-index:2;top:0;left:0;will-change:transform;--w:min(23vw,320px)}
-.jcaps{position:absolute;z-index:4;left:0;right:0;bottom:13svh;text-align:center;padding:0 20px;pointer-events:none}
-.jcap{font-family:Fredoka,system-ui,sans-serif;font-size:clamp(30px,4.6vw,66px);font-weight:700;color:var(--pink);opacity:0;transform:translateY(30px) scale(.96);transition:opacity .6s,transform .7s cubic-bezier(.2,1.2,.3,1);margin:.12em 0}
-.jcap.on{opacity:1;transform:none}
-.jcap.big{font-size:clamp(38px,6.2vw,92px);color:#fff}
-.jhint{position:absolute;z-index:4;left:50%;bottom:4svh;transform:translateX(-50%);font:600 15px Fredoka,sans-serif;color:#fff;background:rgba(95,26,34,.35);padding:8px 16px;border-radius:99px;opacity:0;transition:opacity .5s;white-space:nowrap}
-.jhint.on{opacity:1}
 
 /* SUPERFRUTA */
 #super{position:relative;background:var(--deep);color:#FFE3DE;padding:clamp(90px,11vw,150px) max(5vw,20px);overflow:hidden}
@@ -223,7 +208,6 @@ footer .flogo{width:120px}
   .fcap h2{font-size:clamp(24px,6.6vw,32px)}.fcap p{font-size:15px;margin-top:6px}.fcap .hint{display:none}
   .caps{left:20px;right:20px;top:92px;transform:none;width:auto}
   .cap h2{font-size:clamp(28px,7.6vw,40px)}.cap p{font-size:16px;margin-top:8px}
-  .jhead{top:13svh}
   #viaje .stick{position:relative;height:auto}
   #viaje{height:auto!important}
   .track{flex-direction:column;transform:none!important}
@@ -257,7 +241,6 @@ footer .flogo{width:120px}
   <ul>
     <li><a href="#campo">El campo</a></li>
     <li><a href="#abrir">El tesoro</a></li>
-    <li><a href="#jugo">El jugo</a></li>
     <li><a href="#super">Superfruta</a></li>
     <li><a href="#viaje">El viaje</a></li>
     <li><a href="#simple">Qué tiene</a></li>
@@ -401,20 +384,7 @@ footer .flogo{width:120px}
   </div>
 </section>
 
-<!-- JUGO -->
-<section class="scrolly" id="jugo" aria-label="Sentí el jugo">
-  <div class="stick" id="jstick">
-    <div class="jhead"><h2>¿Cómo se siente una granada en botella?</h2><p>Bajá despacio. Se viene la ola.</p></div>
-    <svg class="liq back" id="lback" aria-hidden="true"><path id="wback" fill="#E5005D"/></svg>
-    <svg class="liq front" id="lfront" aria-hidden="true"><defs><linearGradient id="jg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D3112F"/><stop offset="1" stop-color="#8E0B24"/></linearGradient></defs><path id="wfront" fill="url(#jg)"/><path id="wgloss" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="5" stroke-linecap="round"/><g id="bubs"></g></svg>
-    <div class="jcaps" aria-live="polite">
-      <p class="jcap">Intenso como su color.</p>
-      <p class="jcap">Dulce, ácido y profundo.</p>
-      <p class="jcap big">100 % granada. Sin agregados.</p>
-    </div>
-    <p class="jhint" id="jhint">Mové el mouse sobre el jugo · Hacé clic para salpicar</p>
-  </div>
-</section>
+
 
 <!-- SUPERFRUTA -->
 <section id="super" aria-label="La granada, una superfruta">
@@ -685,7 +655,6 @@ addEventListener('pointermove',e=>{
 },{passive:true});
 addEventListener('pointerdown',e=>{
   if(e.target.closest('a,button,.stage3d,input'))return;
-  if(e.target.closest('#jugo')){splashJuice(e.clientX,e.clientY);return}
   burst(e.clientX,e.clientY,14,{drops:.55,power:6,size:.45});
 });
 
@@ -715,7 +684,7 @@ function heroParallax(){
 
 /* ---------- capítulos con scroll ---------- */
 const S={};
-for(const id of ['abrir','jugo','viaje']){S[id]={el:$('#'+id),p:0,sp:0}}
+for(const id of ['abrir','viaje']){S[id]={el:$('#'+id),p:0,sp:0}}
 function prog(s){const r=s.el.getBoundingClientRect(),d=s.el.offsetHeight-VH;s.vis=r.bottom>0&&r.top<VH;return d>0?clamp(-r.top/d,0,1):0}
 
 /* campo */
@@ -793,41 +762,6 @@ function doAbrir(p){
   lastAb=p;
 }
 
-/* jugo */
-const jst=$('#jstick'),wf=$('#wfront'),wb=$('#wback'),bubs=$('#bubs'),jcaps=$$('.jcap'),jhint=$('#jhint'),flo=$$('.floaters .char').map(e=>e._c),lf=$('#lfront'),lb=$('#lback');
-const ripples=[],bubbles=[];let jW=0,jH=0,level=0,lastRip=0;
-function sizeJ(){jW=jst.clientWidth;jH=jst.clientHeight;for(const s of [lf,lb])s.setAttribute('viewBox',`0 0 ${jW} ${jH}`)}
-function surf(x,base,ph,amp){
-  let y=base+amp*(Math.sin(x*.011+now*.0016+ph)*9+Math.sin(x*.026-now*.0023+ph*2)*5);
-  for(const r of ripples){const t=(now-r.t0)/1000,d=Math.abs(x-r.x);if(d<t*520)y+=r.a*Math.exp(-t*1.4)*Math.cos(d*.034-t*7)*Math.exp(-d/280)}
-  return y;
-}
-function wavePath(base,ph,amp){let d=`M0 ${jH} L0 ${surf(0,base,ph,amp).toFixed(1)}`;for(let x=16;x<=jW+16;x+=16)d+=` L${x} ${surf(x,base,ph,amp).toFixed(1)}`;return d+` L${jW} ${jH} Z`}
-function splashJuice(x,y){const r=jst.getBoundingClientRect(),lx=x-r.left,base=jH*(1-level);ripples.push({x:lx,t0:now,a:26});if(ripples.length>12)ripples.shift();burst(x,r.top+surf(lx,base,0,1),22,{up:true,drops:.75,power:9,size:.5})}
-function doJugo(p){
-  level=RM?1:ss(.04,.86,p);
-  const base=jH*(1-level)+(level>0?0:30);
-  for(let i=ripples.length-1;i>=0;i--)if(now-ripples[i].t0>3500)ripples.splice(i,1);
-  wb.setAttribute('d',wavePath(base-16,1.7,1.2));wf.setAttribute('d',wavePath(base,0,1));
-  {let g='';for(let x=0;x<=jW;x+=16)g+=(x?' L':'M')+x+' '+(surf(x,base,0,1)+9).toFixed(1);$('#wgloss').setAttribute('d',g)}
-  // burbujas
-  if(level>.08&&bubbles.length<26&&Math.random()<.3)bubbles.push({x:Math.random()*jW,y:jH+10,r:2+Math.random()*7,v:.6+Math.random()*1.4,ph:Math.random()*6});
-  let bh='';for(let i=bubbles.length-1;i>=0;i--){const b=bubbles[i];b.y-=b.v;b.ph+=.05;const sy=surf(b.x,base,0,1);if(b.y<sy+8){bubbles.splice(i,1);continue}bh+=`<circle cx="${(b.x+Math.sin(b.ph)*4).toFixed(1)}" cy="${b.y.toFixed(1)}" r="${b.r.toFixed(1)}" fill="none" stroke="rgba(255,210,210,.55)" stroke-width="2"/>`}
-  bubs.innerHTML=bh;
-  // personajes flotando
-  for(const c of flo){
-    const fxr=parseFloat(c.el.dataset.float),w=c.el.offsetWidth,h=c.el.offsetHeight,x=fxr*jW-w/2;
-    const sy=surf(fxr*jW,base,0,1),sl=(surf(fxr*jW+30,base,0,1)-surf(fxr*jW-30,base,0,1))/60;
-    const y=sy-h*.6+(level<.02?h:0);
-    c.el.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px) rotate(${(Math.atan(sl)*40).toFixed(2)}deg)`;
-  }
-  const jc=$('.jcaps');jcaps.forEach(x=>x.classList.toggle('on',level>.05&&base<jc.offsetTop+x.offsetTop-24));
-  jhint.classList.toggle('on',level>.25&&level<.75);
-  // ondas con el mouse
-  const r=jst.getBoundingClientRect();
-  if(ptr.has&&now-lastRip>90&&ptr.y>r.top&&ptr.y<r.bottom){const sy=r.top+surf(ptr.x-r.left,base,0,1);if(Math.abs(ptr.y-sy)<90&&Math.hypot(ptr.vx,ptr.vy)>3){lastRip=now;ripples.push({x:ptr.x-r.left,t0:now,a:clamp(Math.hypot(ptr.vx,ptr.vy)*.5,4,16)})}}
-}
-jhint.textContent=FINE?'Mové el mouse sobre el jugo · Hacé clic para salpicar':'Tocá el jugo para salpicar';
 
 /* viaje */
 const track=$('#track'),panels=$$('.panel'),mobile=()=>VW<=820;
@@ -884,7 +818,7 @@ function doMeter(){const p=clamp(scrollY/(document.documentElement.scrollHeight-
   if(p>.995&&!mDone){mDone=true;const r=$('.meter').getBoundingClientRect();burst(r.left+r.width/2,r.top,30,{up:true,power:9})}if(p<.9)mDone=false}
 
 /* loop */
-function resize(){VW=innerWidth;VH=innerHeight;sizeFx();sizeAmb();sizeJ();sizeViaje();sizeCyl()}
+function resize(){VW=innerWidth;VH=innerHeight;sizeFx();sizeAmb();sizeViaje();sizeCyl()}
 addEventListener('resize',resize);addEventListener('load',resize);resize();
 let last=performance.now();
 function frame(t){now=t;const dt=Math.min(50,t-last);last=t;
@@ -892,7 +826,6 @@ function frame(t){now=t;const dt=Math.min(50,t-last);last=t;
   if(heroVis){if(!RM)drawAmb(dt);heroParallax()}
   {const sc=S.campo;sc.p=prog(sc);sc.sp=RM?sc.p:lerp(sc.sp,sc.p,Math.min(1,dt*.011));if(sc.vis)doCampo(sc.sp)}
   if(S.abrir.vis)doAbrir(RM?1:S.abrir.sp);
-  if(S.jugo.vis)doJugo(S.jugo.sp);
   if(S.viaje.vis||mobile())doViaje(S.viaje.sp);
   if(b3vis)doBotella();
   updateChars(dt);drawFx(dt);doMeter();
