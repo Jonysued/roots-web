@@ -221,6 +221,22 @@ footer .flogo{width:120px}
   .char .sway,.band .run{animation:none!important}
   .hero *{animation-duration:.01s!important;animation-delay:0s!important}
 }
+@media (max-width:820px){
+  .meter{display:none}
+  .caps{top:0;left:0;right:0;transform:none;width:auto;padding:84px 20px 28px;background:linear-gradient(#45101B 0%,#45101B 82%,rgba(69,16,27,0));padding-bottom:40px;min-height:0}
+  .cap{position:relative;top:auto;display:none}.cap.on{display:block}
+  .kick2{margin-bottom:8px}
+  .pomwrap{top:64%;width:min(82vw,44svh)}
+  .ptxt h3{font-size:clamp(30px,8.6vw,40px)}
+  .num{font-size:clamp(64px,20vw,96px);-webkit-text-stroke-width:2px}
+  .ptxt p{font-size:16px}
+  .panel{gap:12px}
+  .sbig{-webkit-text-stroke-width:1.5px}
+  .slead{margin-bottom:36px}
+  .gem3{padding:24px 22px 26px}
+  .hcenter{gap:14px}
+  .hclaim{font-size:clamp(20px,5.6vw,26px)}
+}
 </style>
 </head>
 <body>
@@ -719,6 +735,7 @@ function doAbrir(p){
   // desgranar: la granada se vacía y la prensa se llena
   const fill=ss(.36,.56,p);
   inside.forEach(g=>g.setAttribute('opacity',(1-.75*fill).toFixed(3)));
+  {const fo=1-ss(.6,.7,p);halfL.style.opacity=(fo*(1)).toFixed(3);halfR.style.opacity=fo.toFixed(3);$('#inside').style.opacity=fo.toFixed(3);if(fo<1)pglow.setAttribute('opacity',(g*fo).toFixed(3))}
   pileRect.setAttribute('y',(1114-216*fill).toFixed(1));pileRect.setAttribute('height',(216*fill+2).toFixed(1));
   const fo=ss(.33,.38,p)*(1-ss(.55,.6,p));fallG.setAttribute('opacity',fo.toFixed(2));
   if(fo>0)fas.forEach((u,i)=>{const f=((now*.0011+i/fas.length)%1),x0=300+((i%5)-2)*22,x1=300+((i%5)-2)*34,y0=560,y1=1090-200*fill;
