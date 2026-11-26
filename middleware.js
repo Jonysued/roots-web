@@ -1,6 +1,6 @@
 // ROOTS · acceso privado con usuario y contraseña (Vercel Routing Middleware)
 // Credenciales en variables de entorno del proyecto: ROOTS_USER, ROOTS_PASS, ROOTS_SECRET
-export const config = { matcher: ['/((?!favicon.ico).*)'] };
+export const config = { matcher: ['/((?!favicon\.ico|favicon-32\.png|apple-touch-icon\.png|icon-192\.png).*)'] };
 
 const COOKIE = 'roots_auth';
 const enc = new TextEncoder();
