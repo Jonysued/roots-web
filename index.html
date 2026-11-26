@@ -336,10 +336,10 @@ footer .flogo{width:120px}
     <div class="fcaps">
       <div class="kick3">El campo · San Juan, Argentina</div>
       <div class="fstack">
-        <div class="fcap on"><h2>Todo empieza en el campo.</h2><p>En San Juan, entre montañas, sol fuerte y muy poca lluvia, crecen nuestros granados.</p><p class="hint"><b></b>Bajá y recorré la finca</p></div>
-        <div class="fcap"><h2><span class="cnt">280</span> hectáreas de granados.</h2><p>Todos de la variedad Wonderful: 180 ya dan fruta y 100 están creciendo.</p></div>
-        <div class="fcap"><h2>Cuidados todo el año.</h2><p>Riego, poda, flor y fruto. La granada se toma su tiempo, y nosotros también.</p></div>
-        <div class="fcap"><h2>Toda la fruta de ROOTS sale de acá.</h2><p>La cosechamos y la seleccionamos en nuestra propia planta de empaque. Sabemos de qué planta viene cada granada.</p></div>
+        <div class="fcap on"><h2>Acá empieza todo.</h2><p>En San Juan, donde el sol pega fuerte y la lluvia casi no llega, cuidamos nuestros granados.</p><p class="hint"><b></b>Bajá y recorré la finca</p></div>
+        <div class="fcap"><h2>Solo granada Wonderful.</h2><p>La variedad del rojo más profundo. Cada planta, nuestra.</p></div>
+        <div class="fcap"><h2>Los cuidamos como se cuida lo propio.</h2><p>Todo el año, de la flor al fruto, porque una buena granada no sale de un día para el otro.</p></div>
+        <div class="fcap"><h2>Lo que tomás, lo cultivamos nosotros.</h2><p>Cosechamos y seleccionamos en nuestra propia planta. Sabemos de dónde viene cada granada.</p></div>
       </div>
     </div>
   </div>
@@ -709,7 +709,7 @@ for(const id of ['abrir','viaje']){S[id]={el:$('#'+id),p:0,sp:0}}
 function prog(s){const r=s.el.getBoundingClientRect(),d=s.el.offsetHeight-VH;s.vis=r.bottom>0&&r.top<VH;return d>0?clamp(-r.top/d,0,1):0}
 
 /* campo */
-const cst=$('#cstick'),field=$('#field'),flayers=$$('#field [data-f]').map(g=>({g,f:+g.dataset.f})),fsun=$('#sun'),fsunc=$('#sunc'),fbirds=$('#birds'),sk0=$('#sk0'),sk1=$('#sk1'),fcaps=$$('.fcap'),fcnt=$('.cnt');
+const cst=$('#cstick'),field=$('#field'),flayers=$$('#field [data-f]').map(g=>({g,f:+g.dataset.f})),fsun=$('#sun'),fsunc=$('#sunc'),fbirds=$('#birds'),sk0=$('#sk0'),sk1=$('#sk1'),fcaps=$$('.fcap');
 const fcan=$$('#bNear .cn, #bMid .cn'),fch=$$('.fchars .char').map(e=>e._c);let fcapI=0,cntT=0;
 S.campo={el:$('#campo'),p:0,sp:0};
 const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)),mix=(a,b,t)=>{const A=hex(a),B=hex(b);return'#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('')};
@@ -726,7 +726,6 @@ function doCampo(p){
   const ci=p<.2?0:p<.47?1:p<.72?2:3;
   if(ci!==fcapI){fcapI=ci;if(ci===1)cntT=now}
   fcaps.forEach((x,i)=>x.classList.toggle('on',i===ci));
-  if(fcapI===1){const k=clamp((now-cntT)/1300,0,1);fcnt.textContent=Math.round(280*(1-Math.pow(1-k,3)))}
   const m=field.getScreenCTM(),sr=cst.getBoundingClientRect();if(!m)return;
   fch.forEach((c,i)=>{
     const T=RIGT[c.k],hs=330,ws=hs*T.vb[2]/T.vb[3];let wx=+(VW<=820?c.el.dataset.wxm:c.el.dataset.wx);if(c.k==='c3')wx+=p*260;
