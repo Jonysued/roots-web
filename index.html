@@ -411,6 +411,12 @@ footer .flogo{width:120px}
   <g id="plate"><rect x="292" y="860" width="16" height="30" fill="#3A0D1A"/><rect x="190" y="884" width="220" height="24" rx="7" fill="#5F1A22"/><rect x="190" y="884" width="220" height="8" rx="4" fill="#9A2E45"/></g>
 </g>
 <path id="jstream" d="M494 1142C512 1170 520 1230 470 1340" fill="none" stroke="#D3112F" stroke-width="10" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1" pathLength="1"/>
+<g id="superFx" opacity="0">
+  <radialGradient id="sjAura"><stop offset="0" stop-color="#FF5A6E" stop-opacity=".85"/><stop offset=".45" stop-color="#E5005D" stop-opacity=".35"/><stop offset="1" stop-color="#E5005D" stop-opacity="0"/></radialGradient>
+  <radialGradient id="sjRayG" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="270"><stop offset=".2" stop-color="#FFC9C1" stop-opacity=".9"/><stop offset="1" stop-color="#FFC9C1" stop-opacity="0"/></radialGradient>
+  <g id="sjRays" opacity=".5"><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.6" transform="rotate(15)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.35" transform="rotate(45)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.6" transform="rotate(75)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.35" transform="rotate(105)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.6" transform="rotate(135)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.35" transform="rotate(165)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.6" transform="rotate(195)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.35" transform="rotate(225)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.6" transform="rotate(255)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.35" transform="rotate(285)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.6" transform="rotate(315)"/><path d="M0 0L-22 -270L22 -270Z" fill="url(#sjRayG)" opacity="0.35" transform="rotate(345)"/></g>
+  <circle id="sjGlow" cx="0" cy="0" r="230" fill="url(#sjAura)"/>
+</g>
 <g id="glassG">
   <clipPath id="glassClip"><path d="M404 1336h132l-12 228h-108z"/></clipPath>
   <path d="M400 1330h140l-12 238h-116z" fill="#FFFFFF" fill-opacity=".1"/>
@@ -419,6 +425,9 @@ footer .flogo{width:120px}
   <path d="M416 1350l8 196" stroke="#fff" stroke-opacity=".35" stroke-width="7" stroke-linecap="round"/>
   <ellipse cx="470" cy="1578" rx="90" ry="10" fill="#000" opacity=".25"/>
 </g>
+<g id="sjShineG" opacity="0"><g clip-path="url(#glassClip)"><path id="sjShine" d="M380 1330h34l-60 260h-34z" fill="#fff" opacity=".3"/></g></g>
+<g id="sjBubbles" clip-path="url(#glassClip)" opacity="0"><circle class="sjb" r="2.5" fill="#FFD3CC" opacity=".8"/><circle class="sjb" r="3.5" fill="#FFD3CC" opacity=".8"/><circle class="sjb" r="4.5" fill="#FFD3CC" opacity=".8"/><circle class="sjb" r="2.5" fill="#FFD3CC" opacity=".8"/><circle class="sjb" r="3.5" fill="#FFD3CC" opacity=".8"/><circle class="sjb" r="4.5" fill="#FFD3CC" opacity=".8"/><circle class="sjb" r="2.5" fill="#FFD3CC" opacity=".8"/><circle class="sjb" r="3.5" fill="#FFD3CC" opacity=".8"/><circle class="sjb" r="4.5" fill="#FFD3CC" opacity=".8"/><circle class="sjb" r="2.5" fill="#FFD3CC" opacity=".8"/></g>
+<g id="sjSparks" opacity="0"><use class="sjs" href="#spark" x="372" y="1360"/><use class="sjs" href="#spark" x="568" y="1400"/><use class="sjs" href="#spark" x="386" y="1500"/><use class="sjs" href="#spark" x="560" y="1520"/><use class="sjs" href="#spark" x="470" y="1300"/><use class="sjs" href="#spark" x="530" y="1318"/><use class="sjs" href="#spark" x="410" y="1290"/></g>
 <g id="fallArils" opacity="0"><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/><use class="fa" href="#aril"/></g>
 <g id="drops"><circle class="dr" r="5" fill="#D3112F"/><circle class="dr" r="5" fill="#D3112F"/><circle class="dr" r="5" fill="#D3112F"/><circle class="dr" r="5" fill="#D3112F"/><circle class="dr" r="5" fill="#D3112F"/><circle class="dr" r="5" fill="#D3112F"/></g>
 <path id="crack" d="M300 104L290 160L310 212L290 268L312 326L288 386L312 446L290 506L308 562L300 604" fill="none" stroke="#4A0C18" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
@@ -742,6 +751,7 @@ function doCampo(p){
 /* abrir */
 const halfL=$('#halfL'),halfR=$('#halfR'),crack=$('#crack'),pglow=$('#pglow'),inside=$$('.parils'),caps=$$('#abrir .cap'),pom=$('#pom'),pomsvg=$('#pomsvg');let lastAb=0,burstDone=false;
 const pileRect=$('#pileRect'),pile=$('#pile'),plate=$('#plate'),rod=$('#screwRod'),handle=$('#handle'),pool=$('#pool'),jstream=$('#jstream'),gjuice=$('#gjuice'),fallG=$('#fallArils'),fas=$$('#fallArils .fa'),drs=$$('#drops .dr');
+const superFx=$('#superFx'),sjGlow=$('#sjGlow'),sjRays=$('#sjRays'),sjSp=$('#sjSparks'),sjs=$$('.sjs'),sjBub=$('#sjBubbles'),sjb=$$('.sjb'),sjShineG=$('#sjShineG'),sjShine=$('#sjShine');let sjDone=false;
 function doAbrir(p){
   const c=ss(.04,.13,p);crack.style.strokeDashoffset=1-c;
   const shake=(p>.11&&p<.19)?Math.sin(now*.07)*5*ss(.11,.14,p)*(1-ss(.17,.19,p)):0;
@@ -773,6 +783,16 @@ function doAbrir(p){
   // vaso que se llena
   const lv=ss(.74,.95,p),top=1566-206*lv;
   let d=`M400 1580L400 ${(top+Math.sin(now*.006)*3).toFixed(1)}`;for(let x=410;x<=540;x+=10)d+=`L${x} ${(top+Math.sin(x*.07+now*.006)*3*(lv>0?1:0)).toFixed(1)}`;gjuice.setAttribute('d',d+'L540 1580Z');
+  // superjugo: cuando el vaso se llena
+  {const sj=ss(.93,.99,p);superFx.setAttribute('opacity',sj.toFixed(3));
+   if(sj>0){const pulse=1+.06*Math.sin(now*.004);superFx.setAttribute('transform',`translate(470 1450) scale(${(.7+.3*sj).toFixed(3)})`);
+    sjGlow.setAttribute('transform',`scale(${pulse.toFixed(3)})`);sjRays.setAttribute('transform',`rotate(${(now*.012%360).toFixed(1)}) scale(${(.85+.15*sj).toFixed(3)})`);
+    sjSp.setAttribute('opacity',sj.toFixed(3));sjs.forEach((u,i)=>{const t=(now*.0013+i*.37)%1,k=Math.sin(t*Math.PI);u.setAttribute('transform',`translate(${u.getAttribute('x')} ${u.getAttribute('y')}) scale(${(.3+1.1*k).toFixed(3)}) rotate(${(t*90).toFixed(0)}) translate(${-u.getAttribute('x')} ${-u.getAttribute('y')})`);u.setAttribute('opacity',k.toFixed(2))});
+    sjBub.setAttribute('opacity',sj.toFixed(3));sjb.forEach((c,i)=>{const t=(now*.0005+i*.137)%1;c.setAttribute('cx',(420+((i*37)%100)+Math.sin(now*.003+i)*4).toFixed(1));c.setAttribute('cy',(1560-(1560-top-6)*t).toFixed(1));c.setAttribute('opacity',(.8*Math.sin(t*Math.PI)).toFixed(2))});
+    const sh=(now*.00045)%1.6;sjShineG.setAttribute('opacity',sj.toFixed(3));sjShine.setAttribute('transform',`translate(${(-40+260*Math.min(sh,1)).toFixed(1)} 0)`);
+   }else{sjSp.setAttribute('opacity',0);sjBub.setAttribute('opacity',0);sjShineG.setAttribute('opacity',0)}
+   if(sj>=1&&!sjDone){sjDone=true;const r=$('#glassG').getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height*.15,40,{up:true,sparks:true,power:10,size:.7})}
+   if(p<.9)sjDone=false}
   drs.forEach((c,i)=>{const f=((now*.0016+i/drs.length)%1),on=st>.95&&lv<.99;c.setAttribute('cx',(470+Math.sin(i*2)*6).toFixed(1));c.setAttribute('cy',(1340+(top-1340)*f).toFixed(1));c.setAttribute('opacity',on?(1-f*.3).toFixed(2):0)});
   // cámara
   const cam=330*ss(.3,.42,p)+310*ss(.5,.6,p)+360*ss(.7,.8,p);
