@@ -709,8 +709,7 @@ new IntersectionObserver(e=>heroVis=e[0].isIntersecting).observe(hero);
 const hwm=$('#hwm');let hmx=0,hmy=0;
 function heroParallax(){
   const tx=ptr.has?(ptr.x/VW-.5):0,ty=ptr.has?(ptr.y/VH-.5):0;hmx=lerp(hmx,tx,.06);hmy=lerp(hmy,ty,.06);
-  const sc=clamp(scrollY/VH,0,1);
-  hwm.style.translate=`${-hmx*24}px ${-hmy*14+sc*80}px`;
+  hwm.style.translate=`${-hmx*24}px ${-hmy*14}px`;
 }
 
 /* ---------- capítulos con scroll ---------- */
