@@ -253,15 +253,23 @@ footer .flogo{width:120px}
 .hfact{margin:0;font:700 clamp(14px,1.3vw,17px) "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--wine)}
 @keyframes prodIn{from{opacity:0;transform:translateY(60px) rotate(6deg)}to{opacity:1;transform:none}}
 @media (max-width:820px){
-  .hcenter{flex-direction:row;align-items:center;justify-content:center;gap:4vw;padding:84px 3vw calc(clamp(46px,7svh,70px) + 10svh)}
-  .hbrand{width:63vw;flex:0 0 63vw;gap:10px}
-  .hbrand .hlogo{width:63vw}
-  .hprod{flex:0 0 auto}
-  .hprod .stage3d{height:64vw;min-height:0}
-  .hero{height:calc(64vw + 300px);min-height:0}
+  .hcenter{display:grid;grid-template-columns:63vw auto;grid-template-areas:"logo prod" "claim claim";column-gap:5vw;row-gap:clamp(22px,4svh,40px);align-content:center;justify-content:center;padding:84px 3vw calc(clamp(46px,7svh,70px) + 10svh)}
+  .hbrand{display:contents}
+  .hbrand .hlogo{grid-area:logo;width:63vw;align-self:center}
+  .hclaim{grid-area:claim;text-align:center}
+  .hprod{grid-area:prod;align-self:center}
+  .hprod .stage3d{height:min(64vw,44svh);min-height:0}
+  .hero{height:100svh;min-height:560px}
   .hprod .drag{display:none}
-  .hclaim{font-size:clamp(14px,4vw,20px)}
+  .hclaim{font-size:clamp(19px,5.6vw,26px)}
 }
+.hcue{display:none}
+@media (max-width:820px){
+  .hcenter{grid-template-areas:"logo prod" "claim claim" "cue cue"}
+  .hcue{grid-area:cue;display:flex;flex-direction:column;align-items:center;gap:8px;margin:clamp(8px,3svh,40px) 0 0;font:600 14px Fredoka,sans-serif;color:var(--wine);opacity:.8;animation:rise .9s 1s both}
+  .hcue b{width:14px;height:14px;border-right:3px solid currentColor;border-bottom:3px solid currentColor;transform:rotate(45deg);animation:cueB 1.6s ease-in-out infinite}
+}
+@keyframes cueB{0%,100%{translate:0 0}50%{translate:0 7px}}
 </style>
 </head>
 <body>
@@ -307,6 +315,7 @@ footer .flogo{width:120px}
     <h1 class="hlogo" id="hwm"><span class="sr">Tesoro nutricional. ROOTS, jugo 100 % granada, sin agregados</span><svg class="htag" viewBox="-927.6 275.4 476.8 36.6" aria-hidden="true"><use href="#logoT" fill="#E5005D"/></svg><svg viewBox="292.9 288.9 911.0 278.6" aria-hidden="true"><use href="#logoL" fill="#A92249"/><use href="#logoD" stroke="#E5005D"/></svg></h1>
     <p class="hclaim">100 % granada, sin agregados.<br>Del campo a la botella.</p>
     </div>
+    <p class="hcue" aria-hidden="true">Bajá y conocé el campo<b></b></p>
     <div class="hprod"><div class="stage3d" id="stage3d" role="img" aria-label="Botella de ROOTS que gira; arrastrala para verla de todos lados">
       <div class="shadow3d"></div>
       <div class="cylw"><div class="cyl" id="cyl"></div></div><div class="cshade"></div><div class="cgap" id="cgap"></div>
